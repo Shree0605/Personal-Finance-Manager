@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Container, Row, Col, Card, ProgressBar, Dropdown, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, ProgressBar, Dropdown } from "react-bootstrap";
 import Header from "../components/Header"; // Import the Header component
+import "./home.css"
 import { BsFilter } from "react-icons/bs"; // BsFilter is the filter icon
+import vbg from "../assets/vbg.mp4"
 
  // Import filter icon
 
 const Home = () => {
   // Sample financial data
-  const [totalBalance, setTotalBalance] = useState(50000);
-  const [income, setIncome] = useState(10000);
-  const [expenses, setExpenses] = useState(5000);
-  const [savingsGoal, setSavingsGoal] = useState(20000);
-  const [filterOption, setFilterOption] = useState("Current Year");
+  const [totalBalance] = useState(50000);
+  const [income] = useState(10000);
+  const [expenses] = useState(5000);
+  const [savingsGoal] = useState(20000);
+  const [setFilterOption] = useState("Current Year");
 
   // Calculate savings progress
   const savingsProgress = Math.min((totalBalance / savingsGoal) * 100, 100);
@@ -25,6 +27,10 @@ const Home = () => {
   return (
     <>
       <Header /> {/* Header with updated styles */}
+      <video autoPlay muted loop className="video-bg">
+              <source src={vbg} type="video/mp4" />
+              Your browser does not support HTML5 video.
+            </video>
       <Container className="mt-5 d-flex flex-column align-items-center">
         {/* Filter Dropdown */}
         <div className="mb-3">
@@ -93,79 +99,6 @@ const Home = () => {
   );
 };
 
-const styles = {
-  container: {
-    backgroundImage: `url('/your-image.jpg')`, // Change to your actual image path
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-    height: "100vh",
-    padding: "20px",
-  },
-  header: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-  },
-  filterContainer: {
-    display: "flex",
-    justifyContent: "flex-start", // Align to the left
-    marginBottom: "20px",
-  },
-  filterButton: {
-    display: "flex",
-    alignItems: "center",
-    gap: "5px",
-    backgroundColor: "#007bff",
-    color: "white",
-    borderRadius: "5px",
-    padding: "8px 12px",
-    border: "none",
-    cursor: "pointer",
-  },
-  filterIcon: {
-    marginRight: "5px",
-  },
-  cardContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    gap: "20px",
-  },
-  card: {
-    background: "rgba(255, 255, 255, 0.8)",
-    backdropFilter: "blur(5px)",
-    padding: "20px",
-    borderRadius: "10px",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-    width: "30%",
-    textAlign: "center",
-  },
-  savingsCard: {
-    background: "rgba(255, 255, 255, 0.8)",
-    backdropFilter: "blur(5px)",
-    padding: "20px",
-    borderRadius: "10px",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-    marginTop: "20px",
-    textAlign: "center",
-  },
-  progressBar: {
-    width: "100%",
-    height: "10px",
-    background: "#ddd",
-    borderRadius: "5px",
-    marginTop: "10px",
-    overflow: "hidden",
-  },
-  progressFill: {
-    width: "100%",
-    height: "100%",
-    background: "blue",
-    color: "white",
-    textAlign: "center",
-    fontSize: "12px",
-  },
-};
+
 
 export default Home;

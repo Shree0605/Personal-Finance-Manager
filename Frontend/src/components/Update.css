@@ -1,0 +1,104 @@
+.container {
+  width: 80%;
+  margin-top: 25px;
+  font-family: Arial, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* Background Video */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+h2 {
+  margin-top: 10px;
+  text-align: center;
+  color: white; /* Ensuring text is visible */
+}
+
+.transaction-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 210px;
+  margin-bottom: 20px;
+}
+
+.transaction-form input,
+.transaction-form select,
+.transaction-form button {
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.transaction-form input {
+  width: 220px;
+  height: auto;
+  color: white;
+}
+
+.transaction-form select {
+  width: 120px;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.transaction-form button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 15px;
+}
+
+.transaction-form button:hover {
+  background-color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: grey;
+  color: white;
+}
+td{
+  color: white;
+}
+
+.expense-summary {
+  margin-top: 20px;
+  padding: 15px;
+  color: gold;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Ensure content is readable over video */
+body {
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+}
