@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Container, Row, Col, Card, ProgressBar, Dropdown } from "react-bootstrap";
+import { useTransactions } from "../context/TransactionContext";
+import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
 import Header from "../components/Header"; // Import the Header component
 import "./home.css"
 import { BsFilter } from "react-icons/bs"; // BsFilter is the filter icon
@@ -8,20 +9,20 @@ import vbg from "../assets/vbg.mp4"
  // Import filter icon
 
 const Home = () => {
-  // Sample financial data
-  const [totalBalance] = useState(50000);
-  const [income] = useState(10000);
-  const [expenses] = useState(5000);
-  const [savingsGoal] = useState(20000);
-  const [setFilterOption] = useState("Current Year");
+  const { transactions } = useTransactions(); // Get transactions from context
+  const [filterOption, setFilterOption] = useState("Current Year");
 
   // Calculate savings progress
-  const savingsProgress = Math.min((totalBalance / savingsGoal) * 100, 100);
+  const income = transactions.filter(t => t.type === "Income").reduce((total, t) => total + parseFloat(t.amount), 0);
+  const expenses = transactions.filter(t => t.type === "Expense").reduce((total, t) => total + parseFloat(t.amount), 0);
+  const savings = transactions.filter(t => t.type === "Savings").reduce((total, t) => total + parseFloat(t.amount), 0);
+  const totalBalance = income - expenses;
+
+  
 
   // Handle filter selection
   const handleFilterSelect = (option) => {
     setFilterOption(option);
-    console.log("Selected filter:", option);
   };
 
   return (
@@ -36,7 +37,7 @@ const Home = () => {
         <div className="mb-3">
           <Dropdown>
           <Dropdown.Toggle variant="primary" className="filter-btn">
-            <BsFilter className="filter-icon" /> Filter (Current Year)
+            <BsFilter className="filter-icon" /> Filter ({filterOption})
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -84,16 +85,17 @@ const Home = () => {
               </Card.Body>
             </Card>
           </Col>
+
+          <Col md={4} className="d-flex justify-content-center">
+            <Card className="text-center shadow w-100">
+              <Card.Body>
+                <Card.Title>📉 Savings</Card.Title>
+                <h4>₹{savings}</h4>
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
 
-        {/* Savings Goal Progress */}
-        <Card className="shadow w-75">
-          <Card.Body>
-            <Card.Title>🎯 Savings Goal Progress</Card.Title>
-            <ProgressBar now={savingsProgress} label={`${savingsProgress.toFixed(0)}%`} />
-            <p className="mt-2">Goal: ₹{savingsGoal}</p>
-          </Card.Body>
-        </Card>
       </Container>
     </>
   );

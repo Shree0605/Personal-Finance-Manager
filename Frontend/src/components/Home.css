@@ -1,10 +1,18 @@
-.container { 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
-    padding: 20px;
-  }
+.container {
+  background: transparent; /* Ensure the background video is visible */
+  position: relative; /* Keep content above the video */
+  z-index: 1;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Make the shadow more visible */
+  color: white; 
+  z-index: 1;/* Ensure contrast with background */
+}
+
   .video-bg {
     position: fixed;
     top: 0;
@@ -12,14 +20,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    
   }
   
-  .header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+
   
   .filter-container {
     display: flex;
@@ -45,43 +49,19 @@
   
   .card-container {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center; /* Centers cards in the container */
+    flex-wrap: wrap; /* Allows wrapping to a new row */
     gap: 20px;
-  }
-  
-  .card {
+}
+
+.card {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 30%;
+    width: 45%; /* Ensures only two cards per row */
+    min-width: 250px; /* Prevents shrinking too much */
     text-align: center;
-  }
-  
-  .savings-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
-    text-align: center;
-  }
-  
-  .progress-bar {
-    width: 100%;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  .progress-fill {
-    width: 100%;
-    height: 100%;
-    color: white;
-    text-align: center;
-    font-size: 12px;
-    
-  }
-  
+}

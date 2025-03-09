@@ -41,17 +41,18 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
-        
+
         const data = await response.json();
         if (!response.ok) {
           throw new Error(data.error);
         }
 
-        alert(data.message);
+        alert(data.message);  // Show the welcome message from the backend
         if (isRegister) {
           navigate("/login");
         } else {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user details
           navigate("/home");
         }
       } catch (error) {
@@ -99,4 +100,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
